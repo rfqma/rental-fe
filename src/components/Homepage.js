@@ -3,23 +3,78 @@ import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import { Button, Form } from "react-bootstrap";
 
 const Homepage = () => {
 
   const [testimonials, setTestimonials] = useState([])
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
     fetchData()
-
-
   }, [])
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:3001/api/testimonials')
+    const response = await axios.get(process.env.REACT_APP_API_URL + '/api/testimonials')
     const data = await response.data.data
 
     setTestimonials(data)
   }
+
+  const createTestimonial = async (event) => {
+    event.preventDefault()
+
+    await axios.post(process.env.REACT_APP_API_URL + '/api/testimonials/store', {
+      name: name,
+      description: description
+    })
+      .then(() => { window.location.reload() })
+      .catch((error) => { console.log(error.response.data) })
+  }
+
+  const deleteTestimonial = async (id) => {
+    await axios.delete(process.env.REACT_APP_API_URL + `/api/testimonials/delete/${id}`)
+
+    fetchData()
+  }
+
+  const editTestimonial = async (id, name, description) => {
+
+    setName(name)
+    setDescription(description)
+    setIsEdit(!isEdit)
+  }
+
+  const createEditTestimonial = async (event, id, name, description) => {
+    event.preventDefault()
+
+    await axios.patch(process.env.REACT_APP_API_URL + `/api/testimonials/update/${id}`, {
+      name: name,
+      description: description
+    })
+
+    setIsEdit(false)
+    window.location.reload()
+  }
+
+  const handleNameChange = (event) => {
+    if (isEdit) {
+      setName(event.target.value)
+    } else {
+      setName('')
+    }
+  }
+
+  const handleDescriptionChange = (event) => {
+    if (isEdit) {
+      setDescription(event.target.value)
+    } else {
+      setDescription('')
+    }
+  }
+
   return (
     <div>
       <Helmet>
@@ -264,94 +319,33 @@ const Homepage = () => {
                 className="carousel"
                 data-flickity='{ "wrapAround": true, "pageDots": false }'
               >
-                <div className="carousel-cell">
-                  <div className="card testimoni__slider-card">
-                    <div className="card-body">
-                      <div className="row d-flex align-items-center justify-content-center">
-                        <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimoni__image">
-                          <img
-                            src="images/LandingPage/img_photo.png"
-                            width="80px"
-                            alt="img_photo"
-                          />
-                        </div>
-                        <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                          <div className="star-icon">
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
+                {
+                  testimonials.map((testimonial, index) => (
+                    <div className="carousel-cell" key={testimonial.id}>
+                      <div className="card testimoni__slider-card">
+                        <div className="card-body">
+                          <div className="row d-flex align-items-center justify-content-center">
+                            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimoni__image">
+                              <img
+                                src="images/LandingPage/img_photo.png"
+                                width="80px"
+                                alt="img_photo"
+                              />
+                            </div>
+                            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                              <p style={{ width: '420px' }}>
+                                "{testimonial.description}"
+                              </p>
+                              <p className="testimoni__user">{testimonial.name}</p>
+                              <Button onClick={() => deleteTestimonial(testimonial.id)} class='btn px-2 py-1'>Delete</Button>
+                              <Button onClick={() => editTestimonial(testimonial.id, testimonial.name, testimonial.description)} class='btn ms-3 px-2 py-1'>Edit</Button>
+                            </div>
                           </div>
-                          <p style={{ width: '420px' }}>
-                            "{testimonials[0].description}"
-                          </p>
-                          <p className="testimoni__user">{testimonials[0].name}</p>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="carousel-cell">
-                  <div className="card testimoni__slider-card">
-                    <div className="card-body">
-                      <div className="row d-flex align-items-center justify-content-center">
-                        <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimoni__image">
-                          <img
-                            src="images/LandingPage/img_photo3.png"
-                            width="80px"
-                            alt="img_photo"
-                          />
-                        </div>
-                        <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                          <div className="star-icon">
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                          </div>
-                          <p style={{ width: '420px' }}>
-                            "{testimonials[1].description}"
-                          </p>
-                          <p className="testimoni__user">{testimonials[1].name}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-cell">
-                  <div className="card testimoni__slider-card">
-                    <div className="card-body">
-                      <div className="row d-flex align-items-center justify-content-center">
-                        <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 testimoni__image">
-                          <img
-                            src="images/LandingPage/img_photo.png"
-                            width="80px"
-                            alt="img_photo"
-                          />
-                        </div>
-                        <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                          <div className="star-icon">
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                            <i className="fa-solid fa-star" />
-                          </div>
-                          <p>
-                            "Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            <br />
-                            Quaerat, quod aperiam molestiae id deleniti illum
-                            omnis eum nesciunt?"
-                          </p>
-                          <p className="testimoni__user">John Dee 32, Bromo</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                }
               </div>
             </div>
           </div>
@@ -366,21 +360,34 @@ const Homepage = () => {
             >
               <div className="card-body" data-aos="fade-down">
                 <h1 className="card-title fw-bold text-white getting-started__title">
-                  Sewa Mobil di Yogyakarta Sekarang
+                  Tuliskan Pendapatmu untuk Binar Car Rental
                 </h1>
                 <p className="card-text text-white font-bold">
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.
                 </p>
-                <button className="btn btn-success mt-4 " id="mulaiSewa2">
-                  <Link
-                    to="/carimobil"
-                    className="text-white fw-bold"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Mulai Sewa Mobil
-                  </Link>
-                </button>
+                <Form onSubmit={createTestimonial}>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Control type="text" value={name} onChange={handleNameChange} placeholder="Nama" />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Control as="textarea" rows={3} value={description} onChange={handleDescriptionChange} placeholder="Messages" />
+                  </Form.Group>
+                  {
+                    isEdit &&
+                    <button onClick={() => createEditTestimonial(id, name, description)} className="btn btn-success mt-3">
+                      Edit
+                    </button>
+                  }
+                  {
+                    !isEdit &&
+                    <button className="btn btn-success mt-3" type="submit">
+                      Simpan
+                    </button>
+                  }
+
+                </Form>
               </div>
             </div>
           </div>
@@ -548,7 +555,7 @@ const Homepage = () => {
         {/*end FAQ section*/}
       </main>
       {/*end main*/}
-    </div>
+    </div >
   );
 };
 
