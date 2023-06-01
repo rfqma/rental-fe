@@ -1,0 +1,321 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Helvetica", sans-serif;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+section {
+  scroll-margin-top: 100px;
+}
+p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #000;
+}
+h5 {
+  font-size: 16px;
+}
+h3 {
+  font-size: 24px;
+}
+h1 {
+  font-size: 36px;
+  color: #000;
+  line-height: 150%;
+}
+.col {
+  padding: 0;
+}
+header {
+  background-color: #f1f3ff;
+}
+
+.nav-link {
+  color: #000;
+  font-size: 14px;
+}
+.nav-link:hover {
+  color: #0d28a6;
+}
+.offcanvas {
+  width: 50% !important;
+}
+.btn {
+  border: none;
+  background-color: #5cb85f;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.btn:hover {
+  background-color: #42a045;
+  color: white;
+}
+
+.btn.selected {
+  background-color: #42a045;
+  color: white;
+}
+
+.img-banner {
+  margin-top: 0px;
+}
+.offcanvas-body ul li {
+  margin-bottom: 12px;
+}
+
+.offcanvas-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.offcanvas-body ul li a {
+  color: #000;
+}
+
+.offcanvas-body ul li a:hover {
+  color: #0d28a6;
+  font-weight: 600;
+}
+
+.jumbotron {
+  padding-top: 80px;
+}
+
+.jumbotron .row {
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron-kiri {
+  margin-left: 60px;
+}
+.jumbotron-kiri h1 {
+  font-size: 36px;
+}
+.jumbotron-kiri p {
+  font-size: 14px;
+}
+
+.card-cari-mobil {
+  position: relative;
+  margin-top: -50px;
+  padding: 20px 0;
+  font-size: 14px;
+  width: 100%;
+}
+.input-group-text {
+  background: #fff;
+}
+#passenger-value {
+  border-right: none;
+}
+.button-cari {
+  margin-top: 20px;
+}
+
+#car-container {
+  margin-top: 50px !important;
+}
+
+#not-found {
+  width: 400px;
+  margin: 0px auto;
+  margin-top: 50px;
+}
+
+.form-select {
+  font-size: 14px;
+}
+.form-control {
+  font-size: 14px;
+}
+#our-service__section {
+  margin-bottom: 100px;
+}
+#why-us__section {
+  margin-bottom: 100px;
+}
+
+.sewa {
+  background-color: #0d28a6;
+  border-radius: 13px;
+  padding: 64px 100px;
+}
+#getting-started__Section {
+  margin-bottom: 100px;
+}
+.accordion-item {
+  margin-bottom: 16px;
+}
+
+.fa-instagram {
+  background-color: blue;
+  padding: 6px 7px;
+  border-radius: 100%;
+  color: white;
+}
+.fa-user,
+.fa-calendar,
+.fa-gear {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8a8a8a;
+  color: transparent;
+}
+.harga {
+  font-size: 16px;
+}
+footer {
+  margin: 200px 0 60px 0;
+}
+#testimoni__section {
+  margin-bottom: 100px;
+}
+.testimoni__user {
+  font-weight: 600;
+}
+.slider {
+  margin-bottom: 200px;
+  position: relative;
+}
+
+.testimoni__slider-card {
+  margin: 50px 15px 90px 15px;
+  padding: 40px 36px;
+  background-color: #f1f3ff;
+  border: none;
+}
+
+.flickity-button {
+  margin-top: 100px;
+}
+.fa-star {
+  color: #f9cc00;
+}
+.link-footer {
+  text-decoration: none;
+  font-size: 14px;
+  color: #000;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.link-footer:hover {
+  color: #0d28a6;
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .jumbotron .row {
+    display: flex;
+    align-items: flex-end;
+  }
+  .jumbotron-kiri {
+    padding-bottom: 20px;
+  }
+  .box-banner {
+    height: 120px;
+    margin-top: -130px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .jumbotron-kiri {
+    margin-left: 0;
+  }
+  .box-banner {
+    height: 200px;
+    margin-top: -160px;
+  }
+  .our-service__img {
+    width: 400px;
+    margin-bottom: 24px;
+  }
+  .jumbotron-fluid .row {
+    display: flex;
+    align-items: flex-end;
+  }
+  .why-us__title {
+    text-align: center;
+  }
+  .why-us__card {
+    margin-bottom: 16px;
+  }
+  .title-faq__section {
+    text-align: center;
+  }
+}
+
+@media (max-width: 575px) {
+  .jumbotron-kiri {
+    margin-left: 0;
+  }
+  .box-banner {
+    height: 118px;
+    margin-top: -120px;
+    margin-left: 13px;
+  }
+  .img-banner {
+    margin-left: 13px;
+    margin-top: 20px;
+  }
+  header {
+    margin-bottom: 60px;
+  }
+  .our-service__img {
+    width: 252px;
+    margin-bottom: 24px;
+  }
+  #our-service__section {
+    margin-bottom: 60px;
+  }
+  #why-us__section {
+    margin-bottom: 60px;
+  }
+  .why-us__title {
+    text-align: center;
+  }
+  .why-us__card {
+    margin-bottom: 16px;
+  }
+  .testimoni__slider-card {
+    margin: 16px 15px 90px 15px;
+  }
+  .testimoni-card-item {
+    text-align: center;
+  }
+  #getting-started__Section {
+    margin-bottom: 60px;
+  }
+  .sewa {
+    padding: 58px 64px;
+  }
+  .getting-started__title {
+    font-size: 24px;
+  }
+  #testimoni__section {
+    margin-bottom: 60px;
+  }
+  .testimoni__image {
+    text-align: center;
+  }
+  .flickity-button {
+    margin-top: 130px;
+  }
+  .star-icon {
+    text-align: center;
+    padding: 24px 0;
+  }
+  .title-faq__section {
+    text-align: center;
+  }
+  .footer-col {
+    margin-bottom: 16px;
+  }
+  footer {
+    margin: 60px 0 60px 0;
+  }
+}

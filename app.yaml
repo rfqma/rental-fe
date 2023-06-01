@@ -1,0 +1,25 @@
+runtime: custom
+
+# Menentukan lingkungan runtime yang akan digunakan, yaitu Google App Engine Flexible Environment.
+env: flex
+
+# Nama layanan yang akan digunakan dalam App Engine.
+service: app-user
+
+# Menentukan bagaimana permintaan HTTP akan ditangani.
+# Pada konfigurasi ini terdapat 2 aturan penanganan permintaan, yaitu:
+handlers:
+  # untuk menangani file statis seperti gambar, font, dan file CSS dan JS.
+  # Permintaan yang sesuai akan diarahkan ke direktori build.
+  - url: /(.+\.(ico|svg|png|jpg|jpeg|gif|webp|js|css|eot|woff|woff2|ttf|otf))$
+    static_files: build/\1
+    upload:
+      build/(.+)
+      # Aturan untuk menangani permintaan yang tidak sesuai dengan aturan sebelumnya,
+    # yang akan diarahkan ke script auto.
+  - url: /.*
+    script: auto
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 5
