@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 const Homepage = () => {
+
+  const [testimonials, setTestimonials] = useState([])
+
+  useEffect(() => {
+    fetchData()
+
+
+  }, [])
+
+  const fetchData = async () => {
+    const response = await axios.get('http://localhost:3001/api/testimonials')
+    const data = await response.data.data
+
+    setTestimonials(data)
+  }
   return (
     <div>
       <Helmet>
@@ -266,14 +283,10 @@ const Homepage = () => {
                             <i className="fa-solid fa-star" />
                             <i className="fa-solid fa-star" />
                           </div>
-                          <p>
-                            "Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            <br />
-                            Quaerat, quod aperiam molestiae id deleniti illum
-                            omnis eum nesciunt?"
+                          <p style={{ width: '420px' }}>
+                            "{testimonials[0].description}"
                           </p>
-                          <p className="testimoni__user">John Dee 32, Bromo</p>
+                          <p className="testimoni__user">{testimonials[0].name}</p>
                         </div>
                       </div>
                     </div>
@@ -298,14 +311,10 @@ const Homepage = () => {
                             <i className="fa-solid fa-star" />
                             <i className="fa-solid fa-star" />
                           </div>
-                          <p>
-                            "Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            <br />
-                            Quaerat, quod aperiam molestiae id deleniti illum
-                            omnis eum nesciunt?"
+                          <p style={{ width: '420px' }}>
+                            "{testimonials[1].description}"
                           </p>
-                          <p className="testimoni__user">John Dee 32, Bromo</p>
+                          <p className="testimoni__user">{testimonials[1].name}</p>
                         </div>
                       </div>
                     </div>
