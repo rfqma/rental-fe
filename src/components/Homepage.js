@@ -8,9 +8,8 @@ import { Button, Form } from "react-bootstrap";
 const Homepage = () => {
 
   const [testimonials, setTestimonials] = useState([])
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [isEdit, setIsEdit] = useState(false)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
 
   useEffect(() => {
     fetchData()
@@ -22,6 +21,7 @@ const Homepage = () => {
 
     setTestimonials(data)
   }
+
 
   const createTestimonial = async (event) => {
     event.preventDefault()
@@ -38,41 +38,6 @@ const Homepage = () => {
     await axios.delete(process.env.REACT_APP_API_URL + `/api/testimonials/delete/${id}`)
 
     fetchData()
-  }
-
-  const editTestimonial = async (id, name, description) => {
-
-    setName(name)
-    setDescription(description)
-    setIsEdit(!isEdit)
-  }
-
-  const createEditTestimonial = async (event, id, name, description) => {
-    event.preventDefault()
-
-    await axios.patch(process.env.REACT_APP_API_URL + `/api/testimonials/update/${id}`, {
-      name: name,
-      description: description
-    })
-
-    setIsEdit(false)
-    window.location.reload()
-  }
-
-  const handleNameChange = (event) => {
-    if (isEdit) {
-      setName(event.target.value)
-    } else {
-      setName('')
-    }
-  }
-
-  const handleDescriptionChange = (event) => {
-    if (isEdit) {
-      setDescription(event.target.value)
-    } else {
-      setDescription('')
-    }
   }
 
   return (
@@ -311,7 +276,7 @@ const Homepage = () => {
             <div className="row">
               <div className="col text-center">
                 <h3 className="fw-bold">Testimonial</h3>
-                <p>Berbagai review positif dari pelanggan kami</p>
+                <p>Berbagai review dari pelanggan kami</p>
               </div>
             </div>
             <div className="row">
@@ -337,8 +302,9 @@ const Homepage = () => {
                                 "{testimonial.description}"
                               </p>
                               <p className="testimoni__user">{testimonial.name}</p>
-                              <Button onClick={() => deleteTestimonial(testimonial.id)} class='btn px-2 py-1'>Delete</Button>
-                              <Button onClick={() => editTestimonial(testimonial.id, testimonial.name, testimonial.description)} class='btn ms-3 px-2 py-1'>Edit</Button>
+                              <Button as={Link} to={`/testimonials/edit/${testimonial.id}`} class='btn ms-4 px-2 py-1'>Edit</Button>
+                              <Button onClick={() => deleteTestimonial(testimonial.id)} class='btn me-4 px-2 py-1'>Delete</Button>
+
                             </div>
                           </div>
                         </div>
@@ -368,25 +334,15 @@ const Homepage = () => {
                 </p>
                 <Form onSubmit={createTestimonial}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control type="text" value={name} onChange={handleNameChange} placeholder="Nama" />
+                    <Form.Control type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Nama" />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Control as="textarea" rows={3} value={description} onChange={handleDescriptionChange} placeholder="Messages" />
+                    <Form.Control as="textarea" rows={3} value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Messages" />
                   </Form.Group>
-                  {
-                    isEdit &&
-                    <button onClick={() => createEditTestimonial(id, name, description)} className="btn btn-success mt-3">
-                      Edit
-                    </button>
-                  }
-                  {
-                    !isEdit &&
-                    <button className="btn btn-success mt-3" type="submit">
-                      Simpan
-                    </button>
-                  }
-
+                  <button className="btn btn-success mt-3" type="submit">
+                    Simpan
+                  </button>
                 </Form>
               </div>
             </div>

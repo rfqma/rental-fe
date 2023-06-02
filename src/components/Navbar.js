@@ -10,7 +10,7 @@ const Navbar = () => {
       {/*navbar*/}
       <nav id="navbar-scroll" className="navbar navbar-expand-lg fixed-top">
         <div className="container">
-          <a className="navbar-brand" href=" ">
+          <a className="navbar-brand" href="/">
             <img src="images/LandingPage/logo.png" alt="logo" />
           </a>
           <button

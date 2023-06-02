@@ -4,8 +4,10 @@ import Homepage from "./components/Homepage";
 import CariMobil from "./components/CariMobil";
 import CarContainer from "./components/CarContainer";
 import Footer from "./components/Footer";
+import TestimonialEdit from "./components/TestimonialEdit";
 
 function App() {
+
   return (
     <div>
       <div className="header">
@@ -17,8 +19,9 @@ function App() {
         <Route exact path="/carimobil" element={<CariMobil />} />
 
         <Route exact path="/car" element={<CarContainer />} />
-      </Routes>
 
+        <Route exact path="/testimonials/edit/:id" element={<TestimonialEdit />} />
+      </Routes>
       <div className="footer">
         <Footer />
       </div>
