@@ -272,12 +272,12 @@ sup {
 }
 
 a {
-    color: var(--bs-link-color);
-    text-decoration: underline
+    color: var(--bs-body-bg);
+    text-decoration: none
 }
 
 a:hover {
-    color: var(--bs-link-hover-color)
+    color: var(--bs-body-bg)
 }
 
 a:not([href]):not([class]),
@@ -12660,6 +12660,11 @@ fieldset:disabled .btn {
 
     .d-print-none {
         display: none !important
+    }
+
+    .text-black {
+        color: #000;
+        text-decoration: underline;
     }
 }
 

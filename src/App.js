@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <div className="header">
+      <div className="header mb-5">
         <Navbar />
       </div>
       <Routes>
@@ -22,7 +22,7 @@ function App() {
 
         <Route exact path="/testimonials/edit/:id" element={<TestimonialEdit />} />
       </Routes>
-      <div className="footer">
+      <div className="footer mt-5">
         <Footer />
       </div>
     </div>
