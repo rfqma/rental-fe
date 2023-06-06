@@ -1,4 +1,4 @@
-# FE Binar Car Rental React Web app
+# Car Rental React Web app
 
 This is project for Binar Car Rental Challenge 6 bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
