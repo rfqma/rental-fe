@@ -1,6 +1,6 @@
 # Car Rental React Web app
 
-This is project for Binar Car Rental Challenge 6 bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is project for Car Rental bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
